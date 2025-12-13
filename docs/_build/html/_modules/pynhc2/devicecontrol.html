@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pynhc2.devicecontrol &mdash; pynhc2 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pynhc2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/index.html#mqtt-connector">MQTT Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector"><code class="docutils literal notranslate"><span class="pre">MQTTConnector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.broker"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.broker</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.jwt"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.jwt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.ca_cert"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.ca_cert</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.username"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.port"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.client"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.client</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.last_msg"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.last_msg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.handlers"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.handlers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.__init__"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.connect"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.get_devices"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.get_locations"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_locations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MQTTConnector.register_handler"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.register_handler()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/index.html#device-control">Device Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.conn"><code class="docutils literal notranslate"><span class="pre">Device.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.device_uuid"><code class="docutils literal notranslate"><span class="pre">Device.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.topic"><code class="docutils literal notranslate"><span class="pre">Device.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.method"><code class="docutils literal notranslate"><span class="pre">Device.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.current_status"><code class="docutils literal notranslate"><span class="pre">Device.current_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.__init__"><code class="docutils literal notranslate"><span class="pre">Device.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Device.command"><code class="docutils literal notranslate"><span class="pre">Device.command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp"><code class="docutils literal notranslate"><span class="pre">Lamp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.conn"><code class="docutils literal notranslate"><span class="pre">Lamp.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.device_uuid"><code class="docutils literal notranslate"><span class="pre">Lamp.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.topic"><code class="docutils literal notranslate"><span class="pre">Lamp.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.method"><code class="docutils literal notranslate"><span class="pre">Lamp.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.status"><code class="docutils literal notranslate"><span class="pre">Lamp.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.brightness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.__init__"><code class="docutils literal notranslate"><span class="pre">Lamp.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.command"><code class="docutils literal notranslate"><span class="pre">Lamp.command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.set_brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.set_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.switch"><code class="docutils literal notranslate"><span class="pre">Lamp.switch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.switch_off"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.Lamp.switch_on"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_on()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/index.html#message-handlers">Message Handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler"><code class="docutils literal notranslate"><span class="pre">MessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.input_device"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.input_uuid"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.input_devices"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_devices</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.input_uuids"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_uuids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.seconds_window"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.seconds_window</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.received"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.received</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/index.html#file-reader">File Reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.nhc2_file_path"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.nhc2_file_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.db_name"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.db_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.__init__"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.get_device_types"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_device_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.get_devices"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.NHC2FileReader.get_locations"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_locations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pynhc2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pynhc2.devicecontrol</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pynhc2.devicecontrol</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Device control classes for Niko Home Control 2.</span>
+
+<span class="sd">This module provides classes for controlling devices and creating</span>
+<span class="sd">automation handlers based on device state changes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+
+<div class="viewcode-block" id="Device">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Device">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Device</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for Niko Home Control devices.</span>
+<span class="sd">    </span>
+<span class="sd">    Provides basic device control functionality for any Niko Home Control device.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        conn (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">        device_uuid (str): Unique identifier for the device.</span>
+<span class="sd">        topic (str): MQTT topic for device commands.</span>
+<span class="sd">        method (str): Control method name.</span>
+<span class="sd">        current_status (str): Current device status.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="Device.__init__">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Device.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device_uuid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a Device instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mqttconnector (MQTTConnector, optional): MQTT connector instance.</span>
+<span class="sd">            device_uuid (str, optional): Unique device identifier.</span>
+<span class="sd">            </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If mqttconnector or device_uuid is not provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mqttconnector</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No MQTTconnector object was provided&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">device_uuid</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing device_uuid&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">mqttconnector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span> <span class="o">=</span> <span class="n">device_uuid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;hobby/control/devices/cmd&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;devices.control&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_status</span> <span class="o">=</span> <span class="s2">&quot;Unknown&quot;</span></div>
+
+
+<div class="viewcode-block" id="Device.command">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Device.command">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a command to the device.</span>
+<span class="sd">        </span>
+<span class="sd">        Sends control properties to the device via MQTT.</span>
+<span class="sd">        Properties are lowerkey versions of the Niko camelcase properties.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            properties (list): List of property dictionaries to send to the device.</span>
+<span class="sd">            </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ConnectionError: If MQTT connection is lost.</span>
+<span class="sd">            ValueError: If properties format is invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Properties must be a list&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">_publish_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">device_uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Lamp">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Lamp</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lamp device controller for Niko Home Control.</span>
+<span class="sd">    </span>
+<span class="sd">    Provides control methods for lamp devices including on/off switching</span>
+<span class="sd">    and brightness control.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        conn (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">        device_uuid (str): Unique identifier for the lamp.</span>
+<span class="sd">        topic (str): MQTT topic for device commands.</span>
+<span class="sd">        method (str): Control method name.</span>
+<span class="sd">        status (str): Current lamp status (&quot;On&quot;, &quot;Off&quot;, or None).</span>
+<span class="sd">        brightness (int): Current brightness level (0-100).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="Lamp.__init__">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device_uuid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a Lamp instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mqttconnector (MQTTConnector, optional): MQTT connector instance.</span>
+<span class="sd">            device_uuid (str, optional): Unique lamp identifier.</span>
+<span class="sd">            </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If mqttconnector or device_uuid is not provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mqttconnector</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No MQTTconnector object was provided&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">device_uuid</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing device_uuid&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">mqttconnector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span> <span class="o">=</span> <span class="n">device_uuid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">topic</span> <span class="o">=</span> <span class="s2">&quot;hobby/control/devices/cmd&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;devices.control&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+
+<div class="viewcode-block" id="Lamp.command">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.command">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send a command to the lamp.</span>
+<span class="sd">        </span>
+<span class="sd">        Sends control properties to the lamp via MQTT.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            properties (list): List of property dictionaries to send to the lamp.</span>
+<span class="sd">                Each property dict should have CamelCase keys (e.g., {&quot;Status&quot;: &quot;On&quot;}).</span>
+<span class="sd">                </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ConnectionError: If MQTT connection is lost.</span>
+<span class="sd">            ValueError: If properties format is invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Properties must be a list&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">_publish_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">device_uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Lamp.switch">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.switch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Toggle lamp between on and off states.</span>
+<span class="sd">        </span>
+<span class="sd">        Switches the lamp to the opposite of its current state.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If lamp status has not been set yet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Lamp status is not set yet.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;Off&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">switch_on</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">switch_off</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Lamp.switch_on">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.switch_on">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch_on</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Turn the lamp on.</span>
+<span class="sd">        </span>
+<span class="sd">        Sends an &#39;On&#39; command to the lamp and updates the status attribute.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ConnectionError: If MQTT connection is lost.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span><span class="s2">&quot;On&quot;</span><span class="p">}]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">_publish_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">device_uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;On&quot;</span></div>
+
+
+<div class="viewcode-block" id="Lamp.switch_off">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.switch_off">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">switch_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Turn the lamp off.</span>
+<span class="sd">        </span>
+<span class="sd">        Sends an &#39;Off&#39; command to the lamp and updates the status attribute.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ConnectionError: If MQTT connection is lost.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span><span class="s2">&quot;Off&quot;</span><span class="p">}]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">_publish_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">device_uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;Off&quot;</span></div>
+
+
+<div class="viewcode-block" id="Lamp.set_brightness">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.Lamp.set_brightness">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brightness</span><span class="o">=</span><span class="s2">&quot;50&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set lamp brightness level.</span>
+<span class="sd">        </span>
+<span class="sd">        Turns the lamp on (if off) and sets the brightness to the specified level.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            brightness (str, optional): Brightness level (0-100). Defaults to &quot;50&quot;.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If brightness is not between 0 and 100.</span>
+<span class="sd">            ConnectionError: If MQTT connection is lost.</span>
+<span class="sd">            </span>
+<span class="sd">        Note:</span>
+<span class="sd">            Currently always sends &#39;On&#39; status with brightness.</span>
+<span class="sd">            TODO: Send brightness only if lamp is already on.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">brightness_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">brightness</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">brightness_int</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness must be between 0 and 100, got </span><span class="si">{</span><span class="n">brightness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;invalid literal&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness must be a valid integer, got </span><span class="si">{</span><span class="n">brightness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+        
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;Status&quot;</span><span class="p">:</span><span class="s2">&quot;On&quot;</span><span class="p">},</span> 
+            <span class="p">{</span><span class="s2">&quot;Brightness&quot;</span><span class="p">:</span> <span class="n">brightness</span><span class="p">}</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">_publish_topic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">device_uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_uuid</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;On&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="n">brightness</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MessageHandler">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MessageHandler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MessageHandler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Automation handler that triggers actions based on one device input.</span>
+<span class="sd">    </span>
+<span class="sd">    Monitors an input devices and triggers one or more output actions when all input</span>
+<span class="sd">    devices have sent messages within a specified time window. This enables</span>
+<span class="sd">    NHC-devices to control non-NHC devices e.g. Shelly using pyShelly.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        conn (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">        input_device (object): Device object to monitor.</span>
+<span class="sd">        input_uuid (str): Device UUID extracted from input_device.</span>
+<span class="sd">        output_actions (list): List of callable actions to execute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="MessageHandler.__init__">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MessageHandler.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="p">,</span> <span class="n">input_device</span><span class="p">,</span> <span class="n">output_actions</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a MultiMessageHandler.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mqttconnector (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">            input_device (object): Device object to monitor.</span>
+<span class="sd">            output_actions (list): List of callable actions (methods or lambdas) to execute.</span>
+<span class="sd">                </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If input_device or output_actions is empty.</span>
+<span class="sd">            TypeError: If output_actions contains non-callable items.</span>
+<span class="sd">            AttributeError: If input device doesn&#39;t have a device_uuid attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mqttconnector</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;mqttconnector is required&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">input_device</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;input_device cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">output_actions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;output_actions cannot be empty&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Validate that all output actions are callable</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output_actions</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;output_actions[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] is not callable&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Validate that input device has device_uuid</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">input_device</span><span class="p">,</span> <span class="s1">&#39;device_uuid&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;input_device does not have device_uuid attribute&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">mqttconnector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_device</span> <span class="o">=</span> <span class="n">input_device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_uuid</span> <span class="o">=</span> <span class="n">input_device</span><span class="o">.</span><span class="n">device_uuid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span> <span class="o">=</span> <span class="n">output_actions</span></div>
+
+
+<div class="viewcode-block" id="MessageHandler.handle_message">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MessageHandler.handle_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process incoming MQTT messages for automation logic. </span>
+<span class="sd">        Execution of all configured output actions.</span>
+<span class="sd">        </span>
+<span class="sd">        The message is send to this object through the MQTT connector by checking the input_uuid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># execute actions</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span><span class="p">:</span>
+            <span class="n">action</span><span class="p">()</span>
+        <span class="k">return</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MultiMessageHandler">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MultiMessageHandler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MultiMessageHandler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Automation handler that triggers actions based on multiple device inputs.</span>
+<span class="sd">    </span>
+<span class="sd">    Monitors multiple input devices and triggers output actions when all input</span>
+<span class="sd">    devices have sent messages within a specified time window. This enables</span>
+<span class="sd">    complex automation scenarios like &quot;turn on scene when two switches are pressed&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        conn (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">        input_devices (list): List of device objects to monitor.</span>
+<span class="sd">        input_uuids (list): List of device UUIDs extracted from input_devices.</span>
+<span class="sd">        seconds_window (float): Time window in seconds for input matching.</span>
+<span class="sd">        output_actions (list): List of callable actions to execute.</span>
+<span class="sd">        received (list): Buffer of received messages within the time window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="MultiMessageHandler.__init__">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MultiMessageHandler.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="p">,</span> <span class="n">input_devices</span><span class="p">,</span> <span class="n">output_actions</span><span class="p">,</span> <span class="n">seconds_window</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a MultiMessageHandler.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mqttconnector (MQTTConnector): MQTT connector instance.</span>
+<span class="sd">            input_devices (list): List of device objects (e.g., Lamp instances) to monitor.</span>
+<span class="sd">            output_actions (list): List of callable actions (methods or lambdas) to execute.</span>
+<span class="sd">            seconds_window (float, optional): Time window in seconds for matching inputs.</span>
+<span class="sd">                Defaults to 0.5.</span>
+<span class="sd">                </span>
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If input_devices or output_actions is empty.</span>
+<span class="sd">            TypeError: If output_actions contains non-callable items.</span>
+<span class="sd">            AttributeError: If input devices don&#39;t have device_uuid attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mqttconnector</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;mqttconnector is required&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">input_devices</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;input_devices cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">output_actions</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;output_actions cannot be empty&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Validate that all output actions are callable</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output_actions</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;output_actions[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] is not callable&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Validate that all input devices have device_uuid</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">device</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_devices</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="s1">&#39;device_uuid&#39;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;input_devices[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] does not have device_uuid attribute&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">mqttconnector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_devices</span> <span class="o">=</span> <span class="n">input_devices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_uuids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">device_uuid</span> <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">input_devices</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seconds_window</span> <span class="o">=</span> <span class="n">seconds_window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span> <span class="o">=</span> <span class="n">output_actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">received</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="MultiMessageHandler.handle_message">
+<a class="viewcode-back" href="../../api/index.html#pynhc2.MultiMessageHandler.handle_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process incoming MQTT message for automation logic.</span>
+<span class="sd">        </span>
+<span class="sd">        Checks if all input devices have sent messages within the time window.</span>
+<span class="sd">        If so, executes all configured output actions.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            message (dict): MQTT message dictionary containing:</span>
+<span class="sd">                - device_uuid (str): UUID of the device that sent the message.</span>
+<span class="sd">                - timestamp (float): Message timestamp in seconds.</span>
+<span class="sd">                - Other message metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># remove old messages</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">received</span><span class="p">:</span>
+            <span class="n">newest_timestamp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">received</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">newest_timestamp</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">received</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">msg</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">received</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">newest_timestamp</span> <span class="o">-</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span> <span class="o">&lt;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seconds_window</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># add new message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">received</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+        <span class="c1"># collect timestamps for each input device uuid</span>
+        <span class="n">device_timestamps</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">received</span><span class="p">:</span>
+            <span class="n">device_timestamps</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;device_uuid&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+
+        <span class="c1"># check if commands have been sent for all input_devices</span>
+        <span class="k">if</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">device_timestamps</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_uuids</span><span class="p">):</span>
+            <span class="n">timestamps</span> <span class="o">=</span> <span class="p">[</span><span class="n">device_timestamps</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="k">for</span> <span class="n">uuid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_uuids</span><span class="p">]</span>
+            <span class="n">differences</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">abs</span><span class="p">(</span><span class="n">timestamps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">timestamps</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)])</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))</span>
+            <span class="p">]</span>
+            <span class="c1"># check if all entries are within window and publish</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">seconds_window</span> <span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="n">differences</span><span class="p">):</span>
+                <span class="c1"># Call output actions</span>
+                <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span><span class="p">:</span>
+                    <span class="n">action</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">received</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">return</span></div>
+</div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Kevin Ghekiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

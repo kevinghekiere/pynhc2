@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pynhc2 &mdash; pynhc2 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pynhc2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#mqtt-connector">MQTT Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector"><code class="docutils literal notranslate"><span class="pre">MQTTConnector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.broker"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.broker</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.jwt"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.jwt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.ca_cert"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.ca_cert</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.username"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.port"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.client"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.client</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.last_msg"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.last_msg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.handlers"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.handlers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.__init__"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.connect"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.get_devices"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.get_locations"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_locations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MQTTConnector.register_handler"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.register_handler()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#device-control">Device Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.conn"><code class="docutils literal notranslate"><span class="pre">Device.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.device_uuid"><code class="docutils literal notranslate"><span class="pre">Device.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.topic"><code class="docutils literal notranslate"><span class="pre">Device.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.method"><code class="docutils literal notranslate"><span class="pre">Device.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.current_status"><code class="docutils literal notranslate"><span class="pre">Device.current_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.__init__"><code class="docutils literal notranslate"><span class="pre">Device.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Device.command"><code class="docutils literal notranslate"><span class="pre">Device.command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.Lamp"><code class="docutils literal notranslate"><span class="pre">Lamp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.conn"><code class="docutils literal notranslate"><span class="pre">Lamp.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.device_uuid"><code class="docutils literal notranslate"><span class="pre">Lamp.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.topic"><code class="docutils literal notranslate"><span class="pre">Lamp.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.method"><code class="docutils literal notranslate"><span class="pre">Lamp.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.status"><code class="docutils literal notranslate"><span class="pre">Lamp.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.brightness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.__init__"><code class="docutils literal notranslate"><span class="pre">Lamp.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.command"><code class="docutils literal notranslate"><span class="pre">Lamp.command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.set_brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.set_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.switch"><code class="docutils literal notranslate"><span class="pre">Lamp.switch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.switch_off"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.Lamp.switch_on"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_on()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#message-handlers">Message Handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler"><code class="docutils literal notranslate"><span class="pre">MessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.input_device"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.input_uuid"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.input_devices"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_devices</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.input_uuids"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_uuids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.seconds_window"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.seconds_window</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.received"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.received</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.MultiMessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#file-reader">File Reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.nhc2_file_path"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.nhc2_file_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.db_name"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.db_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.__init__"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.get_device_types"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_device_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.get_devices"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/index.html#pynhc2.NHC2FileReader.get_locations"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_locations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pynhc2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">pynhc2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pynhc2">
+<h1>pynhc2<a class="headerlink" href="#pynhc2" title="Link to this heading"></a></h1>
+<p>version = 0.1.1</p>
+<p>Lightweight Python wrapper library to interact with Niko Home Control 2 systems built on top of paho-mqtt. Includes functionality to read NHC2 config files for better device readability. The library is primary built for home use.</p>
+<!--[![PyPI version](https://badge.fury.io/py/pynhc2.svg)](https://badge.fury.io/py/pynhc2)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)-->
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pynhc2
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pynhc2</span><span class="w"> </span><span class="kn">import</span> <span class="n">MQTTConnector</span><span class="p">,</span> <span class="n">Lamp</span>
+
+<span class="c1"># Connect to Niko Home Control</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">MQTTConnector</span><span class="p">(</span>
+    <span class="n">broker</span><span class="o">=</span><span class="s2">&quot;192.168.1.10&quot;</span><span class="p">,</span>
+    <span class="n">jwt</span><span class="o">=</span><span class="s2">&quot;your-jwt-token&quot;</span><span class="p">,</span>
+    <span class="n">ca_cert</span><span class="o">=</span><span class="s2">&quot;path/to/ca.pem&quot;</span>
+<span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="c1"># Control a lamp</span>
+<span class="n">lamp</span> <span class="o">=</span> <span class="n">Lamp</span><span class="p">(</span><span class="n">mqttconnector</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span> <span class="n">device_uuid</span><span class="o">=</span><span class="s2">&quot;lamp-uuid&quot;</span><span class="p">)</span>
+<span class="n">lamp</span><span class="o">.</span><span class="n">switch_on</span><span class="p">()</span>
+<span class="n">lamp</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="s2">&quot;75&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<p>The Device and Lamp classes are used to easily control individual devices. Using the NHC2FileReader, it is possible to loop through all devices in your home installation and create Device or Lamp objects that are easily human readable.</p>
+<p>The MessageHandler and MultiMessageHandler make it possible to use incoming messages for specific devices to trigger certain output actions; this can be methods for existing Device or Lamp objects, but also actions that have nothing to do with NHC, allowing devices like Shelly to be controlled through NHC.</p>
+<p>Under the <em>hobby/control/devices/evt</em> topic, the NHC Connected Controller - which also acts as MQTT message broker - does not publish events for button-type devices (e.g. ‘button pressed’) but it does this for the devices these buttons command (e.g. “Properties”:[{“Status”:”Off”}, {“Brightness”: “50”}] when a button connected to a lamp is pressed).</p>
+<p>The MessageHandler and MultiMessageHandler circumvent this setup by using the devices whose properties have changed to trigger the actions.</p>
+<!--
+Full documentation is available at [ReadTheDocs](https://pynhc2.readthedocs.io/). 
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
+-->
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>MIT License - see <a class="reference download internal" download="" href="_downloads/9879d6db96fd29134fc802214163b95a/LICENSE"><span class="xref download myst">LICENSE</span></a> file for details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Kevin Ghekiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

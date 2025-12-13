@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; pynhc2 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="pynhc2 documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pynhc2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mqtt-connector">MQTT Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.MQTTConnector"><code class="docutils literal notranslate"><span class="pre">MQTTConnector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.broker"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.broker</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.jwt"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.jwt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.ca_cert"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.ca_cert</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.username"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.port"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.client"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.client</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.last_msg"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.last_msg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.handlers"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.handlers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.__init__"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.connect"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.get_devices"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.get_locations"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.get_locations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MQTTConnector.register_handler"><code class="docutils literal notranslate"><span class="pre">MQTTConnector.register_handler()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#device-control">Device Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.conn"><code class="docutils literal notranslate"><span class="pre">Device.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.device_uuid"><code class="docutils literal notranslate"><span class="pre">Device.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.topic"><code class="docutils literal notranslate"><span class="pre">Device.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.method"><code class="docutils literal notranslate"><span class="pre">Device.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.current_status"><code class="docutils literal notranslate"><span class="pre">Device.current_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.__init__"><code class="docutils literal notranslate"><span class="pre">Device.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Device.command"><code class="docutils literal notranslate"><span class="pre">Device.command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.Lamp"><code class="docutils literal notranslate"><span class="pre">Lamp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.conn"><code class="docutils literal notranslate"><span class="pre">Lamp.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.device_uuid"><code class="docutils literal notranslate"><span class="pre">Lamp.device_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.topic"><code class="docutils literal notranslate"><span class="pre">Lamp.topic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.method"><code class="docutils literal notranslate"><span class="pre">Lamp.method</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.status"><code class="docutils literal notranslate"><span class="pre">Lamp.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.brightness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.__init__"><code class="docutils literal notranslate"><span class="pre">Lamp.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.command"><code class="docutils literal notranslate"><span class="pre">Lamp.command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.set_brightness"><code class="docutils literal notranslate"><span class="pre">Lamp.set_brightness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.switch"><code class="docutils literal notranslate"><span class="pre">Lamp.switch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.switch_off"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.Lamp.switch_on"><code class="docutils literal notranslate"><span class="pre">Lamp.switch_on()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#message-handlers">Message Handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.MessageHandler"><code class="docutils literal notranslate"><span class="pre">MessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.input_device"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_device</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.input_uuid"><code class="docutils literal notranslate"><span class="pre">MessageHandler.input_uuid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.MultiMessageHandler"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.conn"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.conn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.input_devices"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_devices</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.input_uuids"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_uuids</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.seconds_window"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.seconds_window</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.received"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.received</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.handle_message()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-reader">File Reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pynhc2.NHC2FileReader"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.nhc2_file_path"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.nhc2_file_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.db_name"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.db_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.__init__"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.get_device_types"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_device_types()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.get_devices"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_devices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.NHC2FileReader.get_locations"><code class="docutils literal notranslate"><span class="pre">NHC2FileReader.get_locations()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pynhc2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pynhc2">
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-pynhc2" title="Link to this heading"></a></h1>
+<section id="mqtt-connector">
+<h2>MQTT Connector<a class="headerlink" href="#mqtt-connector" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MQTTConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ca_cert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hobby'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>MQTT Connector for Niko Home Control 2.</p>
+<p>This class manages MQTT connections to the Niko Home Control 2 broker,
+handling authentication, TLS encryption, and message routing to registered handlers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.broker">
+<span class="sig-name descname"><span class="pre">broker</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.broker" title="Link to this definition"></a></dt>
+<dd><p>MQTT broker hostname or IP address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.jwt">
+<span class="sig-name descname"><span class="pre">jwt</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.jwt" title="Link to this definition"></a></dt>
+<dd><p>JSON Web Token for authentication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.ca_cert">
+<span class="sig-name descname"><span class="pre">ca_cert</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.ca_cert" title="Link to this definition"></a></dt>
+<dd><p>Path to CA certificate file for TLS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.username" title="Link to this definition"></a></dt>
+<dd><p>MQTT username (default: “hobby”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.port">
+<span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.port" title="Link to this definition"></a></dt>
+<dd><p>MQTT broker port (default: 8884).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.client">
+<span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.client" title="Link to this definition"></a></dt>
+<dd><p>Paho MQTT client instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.last_msg">
+<span class="sig-name descname"><span class="pre">last_msg</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.last_msg" title="Link to this definition"></a></dt>
+<dd><p>Last received MQTT message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.handlers">
+<span class="sig-name descname"><span class="pre">handlers</span></span><a class="headerlink" href="#pynhc2.MQTTConnector.handlers" title="Link to this definition"></a></dt>
+<dd><p>List of registered message handlers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ca_cert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hobby'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize MQTT connector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>broker</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – MQTT broker hostname or IP address.</p></li>
+<li><p><strong>jwt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – JSON Web Token for authentication.</p></li>
+<li><p><strong>ca_cert</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Path to CA certificate file for TLS verification.</p></li>
+<li><p><strong>username</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – MQTT username. Defaults to “hobby”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If broker, jwt, or ca_cert is missing or empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector.connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector.connect" title="Link to this definition"></a></dt>
+<dd><p>Connect to MQTT broker and start message loop.</p>
+<p>Establishes connection to the broker and starts the network loop
+in a background thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The connected MQTT client instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>mqtt.Client</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If connection to the broker fails.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.14)"><strong>OSError</strong></a> – If network connection is unavailable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.get_devices">
+<span class="sig-name descname"><span class="pre">get_devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector.get_devices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector.get_devices" title="Link to this definition"></a></dt>
+<dd><p>Get devices from Niko Home Control system.</p>
+<p>Queries the broker for all devices, optionally filtered by type or location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by device type. Defaults to None.</p></li>
+<li><p><strong>location_uuid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by location UUID. Defaults to None.</p></li>
+<li><p><strong>location_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by location name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of location dictionaries, each containing device information.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.get_locations">
+<span class="sig-name descname"><span class="pre">get_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector.get_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector.get_locations" title="Link to this definition"></a></dt>
+<dd><p>Get all locations from Niko Home Control system.</p>
+<p>Queries the broker for all configured locations/rooms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of location dictionaries containing location information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MQTTConnector.register_handler">
+<span class="sig-name descname"><span class="pre">register_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector.register_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector.register_handler" title="Link to this definition"></a></dt>
+<dd><p>Register a message handler.</p>
+<p>Adds a handler that will receive MQTT messages matching its input devices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>handler</strong> – Handler object with handle_message method and input_uuids attribute.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If handler does not have required attributes or methods.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="device-control">
+<h2>Device Control<a class="headerlink" href="#device-control" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.Device">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Device" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base class for Niko Home Control devices.</p>
+<p>Provides basic device control functionality for any Niko Home Control device.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Device.conn">
+<span class="sig-name descname"><span class="pre">conn</span></span><a class="headerlink" href="#pynhc2.Device.conn" title="Link to this definition"></a></dt>
+<dd><p>MQTT connector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector">MQTTConnector</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Device.device_uuid">
+<span class="sig-name descname"><span class="pre">device_uuid</span></span><a class="headerlink" href="#pynhc2.Device.device_uuid" title="Link to this definition"></a></dt>
+<dd><p>Unique identifier for the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Device.topic">
+<span class="sig-name descname"><span class="pre">topic</span></span><a class="headerlink" href="#pynhc2.Device.topic" title="Link to this definition"></a></dt>
+<dd><p>MQTT topic for device commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Device.method">
+<span class="sig-name descname"><span class="pre">method</span></span><a class="headerlink" href="#pynhc2.Device.method" title="Link to this definition"></a></dt>
+<dd><p>Control method name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Device.current_status">
+<span class="sig-name descname"><span class="pre">current_status</span></span><a class="headerlink" href="#pynhc2.Device.current_status" title="Link to this definition"></a></dt>
+<dd><p>Current device status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Device.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Device.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Device.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a Device instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a><em>, </em><em>optional</em>) – MQTT connector instance.</p></li>
+<li><p><strong>device_uuid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Unique device identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If mqttconnector or device_uuid is not provided.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Device.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Device.command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Device.command" title="Link to this definition"></a></dt>
+<dd><p>Send a command to the device.</p>
+<p>Sends control properties to the device via MQTT.
+Properties are lowerkey versions of the Niko camelcase properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of property dictionaries to send to the device.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If MQTT connection is lost.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If properties format is invalid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.Lamp">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Lamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Lamp device controller for Niko Home Control.</p>
+<p>Provides control methods for lamp devices including on/off switching
+and brightness control.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.conn">
+<span class="sig-name descname"><span class="pre">conn</span></span><a class="headerlink" href="#pynhc2.Lamp.conn" title="Link to this definition"></a></dt>
+<dd><p>MQTT connector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector">MQTTConnector</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.device_uuid">
+<span class="sig-name descname"><span class="pre">device_uuid</span></span><a class="headerlink" href="#pynhc2.Lamp.device_uuid" title="Link to this definition"></a></dt>
+<dd><p>Unique identifier for the lamp.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.topic">
+<span class="sig-name descname"><span class="pre">topic</span></span><a class="headerlink" href="#pynhc2.Lamp.topic" title="Link to this definition"></a></dt>
+<dd><p>MQTT topic for device commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.method">
+<span class="sig-name descname"><span class="pre">method</span></span><a class="headerlink" href="#pynhc2.Lamp.method" title="Link to this definition"></a></dt>
+<dd><p>Control method name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#pynhc2.Lamp.status" title="Link to this definition"></a></dt>
+<dd><p>Current lamp status (“On”, “Off”, or None).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.Lamp.brightness">
+<span class="sig-name descname"><span class="pre">brightness</span></span><a class="headerlink" href="#pynhc2.Lamp.brightness" title="Link to this definition"></a></dt>
+<dd><p>Current brightness level (0-100).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a Lamp instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a><em>, </em><em>optional</em>) – MQTT connector instance.</p></li>
+<li><p><strong>device_uuid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Unique lamp identifier.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If mqttconnector or device_uuid is not provided.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.command">
+<span class="sig-name descname"><span class="pre">command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.command" title="Link to this definition"></a></dt>
+<dd><p>Send a command to the lamp.</p>
+<p>Sends control properties to the lamp via MQTT.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>properties</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of property dictionaries to send to the lamp.
+Each property dict should have CamelCase keys (e.g., {“Status”: “On”}).</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If MQTT connection is lost.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If properties format is invalid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.set_brightness">
+<span class="sig-name descname"><span class="pre">set_brightness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'50'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.set_brightness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.set_brightness" title="Link to this definition"></a></dt>
+<dd><p>Set lamp brightness level.</p>
+<p>Turns the lamp on (if off) and sets the brightness to the specified level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>brightness</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Brightness level (0-100). Defaults to “50”.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If brightness is not between 0 and 100.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If MQTT connection is lost.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently always sends ‘On’ status with brightness.
+TODO: Send brightness only if lamp is already on.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.switch">
+<span class="sig-name descname"><span class="pre">switch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.switch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.switch" title="Link to this definition"></a></dt>
+<dd><p>Toggle lamp between on and off states.</p>
+<p>Switches the lamp to the opposite of its current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If lamp status has not been set yet.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.switch_off">
+<span class="sig-name descname"><span class="pre">switch_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.switch_off"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.switch_off" title="Link to this definition"></a></dt>
+<dd><p>Turn the lamp off.</p>
+<p>Sends an ‘Off’ command to the lamp and updates the status attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If MQTT connection is lost.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.Lamp.switch_on">
+<span class="sig-name descname"><span class="pre">switch_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp.switch_on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp.switch_on" title="Link to this definition"></a></dt>
+<dd><p>Turn the lamp on.</p>
+<p>Sends an ‘On’ command to the lamp and updates the status attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ConnectionError" title="(in Python v3.14)"><strong>ConnectionError</strong></a> – If MQTT connection is lost.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="message-handlers">
+<h2>Message Handlers<a class="headerlink" href="#message-handlers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MessageHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Automation handler that triggers actions based on one device input.</p>
+<p>Monitors an input devices and triggers one or more output actions when all input
+devices have sent messages within a specified time window. This enables
+NHC-devices to control non-NHC devices e.g. Shelly using pyShelly.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.conn">
+<span class="sig-name descname"><span class="pre">conn</span></span><a class="headerlink" href="#pynhc2.MessageHandler.conn" title="Link to this definition"></a></dt>
+<dd><p>MQTT connector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector">MQTTConnector</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.input_device">
+<span class="sig-name descname"><span class="pre">input_device</span></span><a class="headerlink" href="#pynhc2.MessageHandler.input_device" title="Link to this definition"></a></dt>
+<dd><p>Device object to monitor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.input_uuid">
+<span class="sig-name descname"><span class="pre">input_uuid</span></span><a class="headerlink" href="#pynhc2.MessageHandler.input_uuid" title="Link to this definition"></a></dt>
+<dd><p>Device UUID extracted from input_device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.output_actions">
+<span class="sig-name descname"><span class="pre">output_actions</span></span><a class="headerlink" href="#pynhc2.MessageHandler.output_actions" title="Link to this definition"></a></dt>
+<dd><p>List of callable actions to execute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MessageHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MessageHandler.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a MultiMessageHandler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a>) – MQTT connector instance.</p></li>
+<li><p><strong>input_device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><em>object</em></a>) – Device object to monitor.</p></li>
+<li><p><strong>output_actions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions (methods or lambdas) to execute.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If input_device or output_actions is empty.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If output_actions contains non-callable items.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.14)"><strong>AttributeError</strong></a> – If input device doesn’t have a device_uuid attribute.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MessageHandler.handle_message">
+<span class="sig-name descname"><span class="pre">handle_message</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MessageHandler.handle_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MessageHandler.handle_message" title="Link to this definition"></a></dt>
+<dd><p>Process incoming MQTT messages for automation logic.
+Execution of all configured output actions.</p>
+<p>The message is send to this object through the MQTT connector by checking the input_uuid.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MultiMessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Automation handler that triggers actions based on multiple device inputs.</p>
+<p>Monitors multiple input devices and triggers output actions when all input
+devices have sent messages within a specified time window. This enables
+complex automation scenarios like “turn on scene when two switches are pressed”.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.conn">
+<span class="sig-name descname"><span class="pre">conn</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.conn" title="Link to this definition"></a></dt>
+<dd><p>MQTT connector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector">MQTTConnector</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.input_devices">
+<span class="sig-name descname"><span class="pre">input_devices</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.input_devices" title="Link to this definition"></a></dt>
+<dd><p>List of device objects to monitor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.input_uuids">
+<span class="sig-name descname"><span class="pre">input_uuids</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.input_uuids" title="Link to this definition"></a></dt>
+<dd><p>List of device UUIDs extracted from input_devices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.seconds_window">
+<span class="sig-name descname"><span class="pre">seconds_window</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.seconds_window" title="Link to this definition"></a></dt>
+<dd><p>Time window in seconds for input matching.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.output_actions">
+<span class="sig-name descname"><span class="pre">output_actions</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.output_actions" title="Link to this definition"></a></dt>
+<dd><p>List of callable actions to execute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.received">
+<span class="sig-name descname"><span class="pre">received</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.received" title="Link to this definition"></a></dt>
+<dd><p>Buffer of received messages within the time window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a MultiMessageHandler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a>) – MQTT connector instance.</p></li>
+<li><p><strong>input_devices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of device objects (e.g., Lamp instances) to monitor.</p></li>
+<li><p><strong>output_actions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions (methods or lambdas) to execute.</p></li>
+<li><p><strong>seconds_window</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Time window in seconds for matching inputs.
+Defaults to 0.5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If input_devices or output_actions is empty.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If output_actions contains non-callable items.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.14)"><strong>AttributeError</strong></a> – If input devices don’t have device_uuid attribute.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.handle_message">
+<span class="sig-name descname"><span class="pre">handle_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.handle_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.handle_message" title="Link to this definition"></a></dt>
+<dd><p>Process incoming MQTT message for automation logic.</p>
+<p>Checks if all input devices have sent messages within the time window.
+If so, executes all configured output actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – MQTT message dictionary containing:
+- device_uuid (str): UUID of the device that sent the message.
+- timestamp (float): Message timestamp in seconds.
+- Other message metadata.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="file-reader">
+<h2>File Reader<a class="headerlink" href="#file-reader" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">NHC2FileReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nhc2_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Reader for Niko Home Control 2 configuration files.</p>
+<p>Extracts and reads device and location information from .nhc2 configuration
+files exported from the Niko Home Control app.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.nhc2_file_path">
+<span class="sig-name descname"><span class="pre">nhc2_file_path</span></span><a class="headerlink" href="#pynhc2.NHC2FileReader.nhc2_file_path" title="Link to this definition"></a></dt>
+<dd><p>Path to the .nhc2 configuration file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.db_name">
+<span class="sig-name descname"><span class="pre">db_name</span></span><a class="headerlink" href="#pynhc2.NHC2FileReader.db_name" title="Link to this definition"></a></dt>
+<dd><p>Path to the extracted SQLite database file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nhc2_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize NHC2FileReader.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nhc2_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Path to .nhc2 configuration file.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If nhc2_file_path is not provided.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.14)"><strong>FileNotFoundError</strong></a> – If the configuration file does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.get_device_types">
+<span class="sig-name descname"><span class="pre">get_device_types</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader.get_device_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader.get_device_types" title="Link to this definition"></a></dt>
+<dd><p>Get all unique device types from the configuration file.</p>
+<p>Queries the SQLite database for all distinct device type codes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of device type code strings (e.g., [‘Lamp’, ‘DimmableLamp’]).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.DatabaseError" title="(in Python v3.14)"><strong>sqlite3.DatabaseError</strong></a> – If the database is corrupted or invalid.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.OperationalError" title="(in Python v3.14)"><strong>sqlite3.OperationalError</strong></a> – If required tables do not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.get_devices">
+<span class="sig-name descname"><span class="pre">get_devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader.get_devices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader.get_devices" title="Link to this definition"></a></dt>
+<dd><p>Get devices from the configuration file.</p>
+<p>Queries the SQLite database for devices, optionally filtered by
+device type or location.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by device type code. Defaults to None.</p></li>
+<li><p><strong>location_uuid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by location UUID. Defaults to None.</p></li>
+<li><p><strong>location_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Filter by location name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>List of device dictionaries, each containing:</dt><dd><ul class="simple">
+<li><p>device_uuid (str): Unique identifier for the device.</p></li>
+<li><p>device_name (str): Human-readable name of the device.</p></li>
+<li><p>device_type (str): Device type code.</p></li>
+<li><p>location_uuid (str): UUID of the location containing the device.</p></li>
+<li><p>location_name (str): Name of the location containing the device.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.DatabaseError" title="(in Python v3.14)"><strong>sqlite3.DatabaseError</strong></a> – If the database is corrupted or invalid.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.OperationalError" title="(in Python v3.14)"><strong>sqlite3.OperationalError</strong></a> – If required tables do not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynhc2.NHC2FileReader.get_locations">
+<span class="sig-name descname"><span class="pre">get_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader.get_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader.get_locations" title="Link to this definition"></a></dt>
+<dd><p>Get all locations from the configuration file.</p>
+<p>Queries the SQLite database for all configured locations/rooms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>List of location dictionaries, each containing:</dt><dd><ul class="simple">
+<li><p>location_uuid (str): Unique identifier for the location.</p></li>
+<li><p>location_name (str): Human-readable name of the location.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.DatabaseError" title="(in Python v3.14)"><strong>sqlite3.DatabaseError</strong></a> – If the database is corrupted or invalid.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/sqlite3.html#sqlite3.OperationalError" title="(in Python v3.14)"><strong>sqlite3.OperationalError</strong></a> – If the Location table does not exist.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="pynhc2 documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Kevin Ghekiere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
