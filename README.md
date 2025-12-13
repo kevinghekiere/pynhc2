@@ -5,8 +5,8 @@ version = 0.1.1
 Lightweight Python wrapper library to interact with Niko Home Control 2 systems built on top of paho-mqtt. Includes functionality to read NHC2 config files for better device readability. The library is primary built for home use.
 
 [![PyPI version](https://badge.fury.io/py/pynhc2.svg)](https://pypi.org/project/pynhc2/)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Documentation Status](https://readthedocs.org/projects/pynhc2/badge/?version=latest)](https://pynhc2.readthedocs.io/en/latest/?badge=latest)
+[![Python 3.12+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Documentation Status](https://readthedocs.org/projects/pynhc2/badge/?version=latest)](https://pynhc2.readthedocs.io/en/latest/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
