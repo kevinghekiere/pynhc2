@@ -19,3 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MultiMessageHandler class for multi-device automation
 
 [0.1.1]: https://github.com/kevinghekiere/pynhc2/releases/tag/0.1.1
+
+## [0.1.2][0.1.2] - 2025-12-13
+
+### Changed
+
+- Made the MessageHandler and MultiMessageHandler classes stateful: added 'state' attribute that toggles between off/on
+
+[0.1.2]: https://github.com/kevinghekiere/pynhc2/releases/tag/0.1.2

@@ -656,41 +656,107 @@ class TestMultiMessageHandler:
         device2 = Mock()
         device2.device_uuid = "uuid-2"
         
-        action = Mock()
+        action_on = Mock()
+        action_off = Mock()
         
         handler = MultiMessageHandler(
             mqttconnector=conn,
             input_devices=[device1, device2],
-            output_actions=[action],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
             seconds_window=0.5
         )
         
         assert handler.input_uuids == ["uuid-1", "uuid-2"]
         assert handler.seconds_window == 0.5
         assert handler.received == []
-    
+        assert handler.state == 'off'
+
     def test_init_missing_connector(self):
         """Test that ValueError is raised when mqttconnector is missing."""
         device = Mock()
         device.device_uuid = "uuid-123"
         
         with pytest.raises(ValueError, match="mqttconnector is required"):
-            MultiMessageHandler(mqttconnector=None, input_devices=[device], output_actions=[lambda: None])
-    
-    def test_handle_message_within_window(self):
-        """Test that actions execute when all devices message within time window."""
+            MultiMessageHandler(
+                mqttconnector=None,
+                input_devices=[device],
+                output_actions_on=[lambda: None],
+                output_actions_off=[lambda: None]
+            )
+
+    def test_init_missing_output_actions_on(self):
+        """Test that ValueError is raised when output_actions_on is empty."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-123"
+
+        with pytest.raises(ValueError, match="output_actions_on cannot be empty"):
+            MultiMessageHandler(
+                mqttconnector=conn,
+                input_devices=[device],
+                output_actions_on=[],
+                output_actions_off=[lambda: None]
+            )
+
+    def test_init_missing_output_actions_off(self):
+        """Test that ValueError is raised when output_actions_off is empty."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-123"
+
+        with pytest.raises(ValueError, match="output_actions_off cannot be empty"):
+            MultiMessageHandler(
+                mqttconnector=conn,
+                input_devices=[device],
+                output_actions_on=[lambda: None],
+                output_actions_off=[]
+            )
+
+    def test_init_non_callable_action_on(self):
+        """Test that TypeError is raised for non-callable item in output_actions_on."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-123"
+
+        with pytest.raises(TypeError, match="output_actions_on"):
+            MultiMessageHandler(
+                mqttconnector=conn,
+                input_devices=[device],
+                output_actions_on=["not_callable"],
+                output_actions_off=[lambda: None]
+            )
+
+    def test_init_non_callable_action_off(self):
+        """Test that TypeError is raised for non-callable item in output_actions_off."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-123"
+
+        with pytest.raises(TypeError, match="output_actions_off"):
+            MultiMessageHandler(
+                mqttconnector=conn,
+                input_devices=[device],
+                output_actions_on=[lambda: None],
+                output_actions_off=["not_callable"]
+            )
+
+    def test_handle_message_within_window_toggles_on(self):
+        """Test that on-actions execute and state becomes 'on' on first trigger."""
         conn = Mock()
         device1 = Mock()
         device1.device_uuid = "uuid-1"
         device2 = Mock()
         device2.device_uuid = "uuid-2"
         
-        action = Mock()
+        action_on = Mock()
+        action_off = Mock()
         
         handler = MultiMessageHandler(
             mqttconnector=conn,
             input_devices=[device1, device2],
-            output_actions=[action],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
             seconds_window=1.0
         )
         
@@ -701,9 +767,42 @@ class TestMultiMessageHandler:
         handler.handle_message(msg1)
         handler.handle_message(msg2)
         
-        action.assert_called_once()
+        action_on.assert_called_once()
+        action_off.assert_not_called()
+        assert handler.state == 'on'
         assert handler.received == []  # Buffer should be cleared
-    
+
+    def test_handle_message_within_window_toggles_off(self):
+        """Test that off-actions execute and state becomes 'off' on second trigger."""
+        conn = Mock()
+        device1 = Mock()
+        device1.device_uuid = "uuid-1"
+        device2 = Mock()
+        device2.device_uuid = "uuid-2"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device1, device2],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=1.0
+        )
+
+        # First trigger → ON
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1000.1})
+
+        # Second trigger → OFF
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1002.0})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1002.1})
+
+        assert action_on.call_count == 1
+        assert action_off.call_count == 1
+        assert handler.state == 'off'
+
     def test_handle_message_outside_window(self):
         """Test that actions don't execute when messages are outside time window."""
         conn = Mock()
@@ -712,12 +811,14 @@ class TestMultiMessageHandler:
         device2 = Mock()
         device2.device_uuid = "uuid-2"
         
-        action = Mock()
+        action_on = Mock()
+        action_off = Mock()
         
         handler = MultiMessageHandler(
             mqttconnector=conn,
             input_devices=[device1, device2],
-            output_actions=[action],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
             seconds_window=0.5
         )
         
@@ -728,7 +829,9 @@ class TestMultiMessageHandler:
         handler.handle_message(msg1)
         handler.handle_message(msg2)
         
-        action.assert_not_called()
+        action_on.assert_not_called()
+        action_off.assert_not_called()
+        assert handler.state == 'off'
 
 
 class TestNHC2FileReader:

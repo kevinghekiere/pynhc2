@@ -259,42 +259,54 @@ class MultiMessageHandler:
     Monitors multiple input devices and triggers output actions when all input
     devices have sent messages within a specified time window. This enables
     complex automation scenarios like "turn on scene when two switches are pressed".
+
+    The handler maintains a toggle state ('off' initially). Each time all input
+    devices are triggered within the time window, the state toggles between 'on'
+    and 'off', executing the corresponding set of output actions.
     
     Attributes:
         conn (MQTTConnector): MQTT connector instance.
         input_devices (list): List of device objects to monitor.
         input_uuids (list): List of device UUIDs extracted from input_devices.
         seconds_window (float): Time window in seconds for input matching.
-        output_actions (list): List of callable actions to execute.
+        output_actions_on (list): List of callable actions to execute when state becomes 'on'.
+        output_actions_off (list): List of callable actions to execute when state becomes 'off'.
+        state (str): Current toggle state, either 'on' or 'off'.
         received (list): Buffer of received messages within the time window.
     """
     
-    def __init__(self, mqttconnector, input_devices, output_actions, seconds_window=0.5):
+    def __init__(self, mqttconnector, input_devices, output_actions_on, output_actions_off, seconds_window=0.5):
         """Initialize a MultiMessageHandler.
         
         Args:
             mqttconnector (MQTTConnector): MQTT connector instance.
             input_devices (list): List of device objects (e.g., Lamp instances) to monitor.
-            output_actions (list): List of callable actions (methods or lambdas) to execute.
+            output_actions_on (list): List of callable actions to execute when state becomes 'on'.
+            output_actions_off (list): List of callable actions to execute when state becomes 'off'.
             seconds_window (float, optional): Time window in seconds for matching inputs.
                 Defaults to 0.5.
                 
         Raises:
-            ValueError: If input_devices or output_actions is empty.
-            TypeError: If output_actions contains non-callable items.
+            ValueError: If input_devices or either output_actions list is empty.
+            TypeError: If output_actions contain non-callable items.
             AttributeError: If input devices don't have device_uuid attribute.
         """
         if not mqttconnector:
             raise ValueError("mqttconnector is required")
         if not input_devices:
             raise ValueError("input_devices cannot be empty")
-        if not output_actions:
-            raise ValueError("output_actions cannot be empty")
+        if not output_actions_on:
+            raise ValueError("output_actions_on cannot be empty")
+        if not output_actions_off:
+            raise ValueError("output_actions_off cannot be empty")
         
         # Validate that all output actions are callable
-        for i, action in enumerate(output_actions):
+        for i, action in enumerate(output_actions_on):
             if not callable(action):
-                raise TypeError(f"output_actions[{i}] is not callable")
+                raise TypeError(f"output_actions_on[{i}] is not callable")
+        for i, action in enumerate(output_actions_off):
+            if not callable(action):
+                raise TypeError(f"output_actions_off[{i}] is not callable")
         
         # Validate that all input devices have device_uuid
         for i, device in enumerate(input_devices):
@@ -305,14 +317,17 @@ class MultiMessageHandler:
         self.input_devices = input_devices
         self.input_uuids = [dev.device_uuid for dev in input_devices]
         self.seconds_window = seconds_window
-        self.output_actions = output_actions
+        self.output_actions_on = output_actions_on
+        self.output_actions_off = output_actions_off
+        self.state = 'off'
         self.received = []
 
     def handle_message(self, message):
         """Process incoming MQTT message for automation logic.
         
         Checks if all input devices have sent messages within the time window.
-        If so, executes all configured output actions.
+        If so, toggles the state between 'on' and 'off' and executes the
+        corresponding set of output actions.
         
         Args:
             message (dict): MQTT message dictionary containing:
@@ -347,10 +362,11 @@ class MultiMessageHandler:
                 abs(timestamps[i] - timestamps[(i + 1) % len(timestamps)])
                 for i in range(len(timestamps))
             ]
-            # check if all entries are within window and publish
+            # check if all entries are within window and toggle state
             if all(diff < self.seconds_window for diff in differences):
-                # Call output actions
-                for action in self.output_actions:
+                self.state = 'on' if self.state == 'off' else 'off'
+                actions = self.output_actions_on if self.state == 'on' else self.output_actions_off
+                for action in actions:
                     action()
                 self.received = []
                 return
