@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API Reference &mdash; pynhc2 0.1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=a58bc63e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -106,7 +106,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.input_devices"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_devices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.input_uuids"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_uuids</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.seconds_window"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.seconds_window</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.output_actions_on"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions_on</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.output_actions_off"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions_off</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.state"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.state</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.received"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.received</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pynhc2.MultiMessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.handle_message()</span></code></a></li>
@@ -160,7 +162,7 @@
 <h2>MQTT Connector<a class="headerlink" href="#mqtt-connector" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.MQTTConnector">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MQTTConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ca_cert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hobby'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MQTTConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ca_cert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hobby'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/mqttconnector.html#MQTTConnector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MQTTConnector" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>MQTT Connector for Niko Home Control 2.</p>
 <p>This class manages MQTT connections to the Niko Home Control 2 broker,
@@ -348,7 +350,7 @@ in a background thread.</p>
 <h2>Device Control<a class="headerlink" href="#device-control" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.Device">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Device" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Device" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for Niko Home Control devices.</p>
 <p>Provides basic device control functionality for any Niko Home Control device.</p>
@@ -447,7 +449,7 @@ Properties are lowerkey versions of the Niko camelcase properties.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.Lamp">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Lamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">Lamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_uuid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#Lamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.Lamp" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Lamp device controller for Niko Home Control.</p>
 <p>Provides control methods for lamp devices including on/off switching
@@ -620,7 +622,7 @@ TODO: Send brightness only if lamp is already on.</p>
 <h2>Message Handlers<a class="headerlink" href="#message-handlers" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.MessageHandler">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MessageHandler" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MessageHandler" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Automation handler that triggers actions based on one device input.</p>
 <p>Monitors an input devices and triggers one or more output actions when all input
@@ -704,12 +706,15 @@ Execution of all configured output actions.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.MultiMessageHandler">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MultiMessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">MultiMessageHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions_on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Automation handler that triggers actions based on multiple device inputs.</p>
 <p>Monitors multiple input devices and triggers output actions when all input
 devices have sent messages within a specified time window. This enables
 complex automation scenarios like “turn on scene when two switches are pressed”.</p>
+<p>The handler maintains a toggle state (‘off’ initially). Each time all input
+devices are triggered within the time window, the state toggles between ‘on’
+and ‘off’, executing the corresponding set of output actions.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.conn">
 <span class="sig-name descname"><span class="pre">conn</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.conn" title="Link to this definition"></a></dt>
@@ -755,12 +760,34 @@ complex automation scenarios like “turn on scene when two switches are pressed
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.output_actions">
-<span class="sig-name descname"><span class="pre">output_actions</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.output_actions" title="Link to this definition"></a></dt>
-<dd><p>List of callable actions to execute.</p>
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.output_actions_on">
+<span class="sig-name descname"><span class="pre">output_actions_on</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.output_actions_on" title="Link to this definition"></a></dt>
+<dd><p>List of callable actions to execute when state becomes ‘on’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.output_actions_off">
+<span class="sig-name descname"><span class="pre">output_actions_off</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.output_actions_off" title="Link to this definition"></a></dt>
+<dd><p>List of callable actions to execute when state becomes ‘off’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.state">
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#pynhc2.MultiMessageHandler.state" title="Link to this definition"></a></dt>
+<dd><p>Current toggle state, either ‘on’ or ‘off’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -778,22 +805,23 @@ complex automation scenarios like “turn on scene when two switches are pressed
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mqttconnector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_devices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions_on</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_actions_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a MultiMessageHandler.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a>) – MQTT connector instance.</p></li>
 <li><p><strong>input_devices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of device objects (e.g., Lamp instances) to monitor.</p></li>
-<li><p><strong>output_actions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions (methods or lambdas) to execute.</p></li>
+<li><p><strong>output_actions_on</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions to execute when state becomes ‘on’.</p></li>
+<li><p><strong>output_actions_off</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions to execute when state becomes ‘off’.</p></li>
 <li><p><strong>seconds_window</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Time window in seconds for matching inputs.
 Defaults to 0.5.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If input_devices or output_actions is empty.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If output_actions contains non-callable items.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If input_devices or either output_actions list is empty.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If output_actions contain non-callable items.</p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.14)"><strong>AttributeError</strong></a> – If input devices don’t have device_uuid attribute.</p></li>
 </ul>
 </dd>
@@ -805,7 +833,8 @@ Defaults to 0.5.</p></li>
 <span class="sig-name descname"><span class="pre">handle_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.handle_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.handle_message" title="Link to this definition"></a></dt>
 <dd><p>Process incoming MQTT message for automation logic.</p>
 <p>Checks if all input devices have sent messages within the time window.
-If so, executes all configured output actions.</p>
+If so, toggles the state between ‘on’ and ‘off’ and executes the
+corresponding set of output actions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – MQTT message dictionary containing:
@@ -823,7 +852,7 @@ If so, executes all configured output actions.</p>
 <h2>File Reader<a class="headerlink" href="#file-reader" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pynhc2.NHC2FileReader">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">NHC2FileReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nhc2_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pynhc2.</span></span><span class="sig-name descname"><span class="pre">NHC2FileReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nhc2_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/nhc2filereader.html#NHC2FileReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.NHC2FileReader" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Reader for Niko Home Control 2 configuration files.</p>
 <p>Extracts and reads device and location information from .nhc2 configuration

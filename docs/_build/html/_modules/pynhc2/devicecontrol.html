@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pynhc2.devicecontrol &mdash; pynhc2 0.1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -104,7 +104,9 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.input_devices"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_devices</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.input_uuids"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.input_uuids</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.seconds_window"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.seconds_window</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.output_actions"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.output_actions_on"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions_on</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.output_actions_off"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.output_actions_off</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.state"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.state</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.received"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.received</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.__init__"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/index.html#pynhc2.MultiMessageHandler.handle_message"><code class="docutils literal notranslate"><span class="pre">MultiMessageHandler.handle_message()</span></code></a></li>
@@ -455,44 +457,56 @@
 <span class="sd">    Monitors multiple input devices and triggers output actions when all input</span>
 <span class="sd">    devices have sent messages within a specified time window. This enables</span>
 <span class="sd">    complex automation scenarios like &quot;turn on scene when two switches are pressed&quot;.</span>
+
+<span class="sd">    The handler maintains a toggle state (&#39;off&#39; initially). Each time all input</span>
+<span class="sd">    devices are triggered within the time window, the state toggles between &#39;on&#39;</span>
+<span class="sd">    and &#39;off&#39;, executing the corresponding set of output actions.</span>
 <span class="sd">    </span>
 <span class="sd">    Attributes:</span>
 <span class="sd">        conn (MQTTConnector): MQTT connector instance.</span>
 <span class="sd">        input_devices (list): List of device objects to monitor.</span>
 <span class="sd">        input_uuids (list): List of device UUIDs extracted from input_devices.</span>
 <span class="sd">        seconds_window (float): Time window in seconds for input matching.</span>
-<span class="sd">        output_actions (list): List of callable actions to execute.</span>
+<span class="sd">        output_actions_on (list): List of callable actions to execute when state becomes &#39;on&#39;.</span>
+<span class="sd">        output_actions_off (list): List of callable actions to execute when state becomes &#39;off&#39;.</span>
+<span class="sd">        state (str): Current toggle state, either &#39;on&#39; or &#39;off&#39;.</span>
 <span class="sd">        received (list): Buffer of received messages within the time window.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
 <div class="viewcode-block" id="MultiMessageHandler.__init__">
 <a class="viewcode-back" href="../../api/index.html#pynhc2.MultiMessageHandler.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="p">,</span> <span class="n">input_devices</span><span class="p">,</span> <span class="n">output_actions</span><span class="p">,</span> <span class="n">seconds_window</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mqttconnector</span><span class="p">,</span> <span class="n">input_devices</span><span class="p">,</span> <span class="n">output_actions_on</span><span class="p">,</span> <span class="n">output_actions_off</span><span class="p">,</span> <span class="n">seconds_window</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a MultiMessageHandler.</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
 <span class="sd">            mqttconnector (MQTTConnector): MQTT connector instance.</span>
 <span class="sd">            input_devices (list): List of device objects (e.g., Lamp instances) to monitor.</span>
-<span class="sd">            output_actions (list): List of callable actions (methods or lambdas) to execute.</span>
+<span class="sd">            output_actions_on (list): List of callable actions to execute when state becomes &#39;on&#39;.</span>
+<span class="sd">            output_actions_off (list): List of callable actions to execute when state becomes &#39;off&#39;.</span>
 <span class="sd">            seconds_window (float, optional): Time window in seconds for matching inputs.</span>
 <span class="sd">                Defaults to 0.5.</span>
 <span class="sd">                </span>
 <span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If input_devices or output_actions is empty.</span>
-<span class="sd">            TypeError: If output_actions contains non-callable items.</span>
+<span class="sd">            ValueError: If input_devices or either output_actions list is empty.</span>
+<span class="sd">            TypeError: If output_actions contain non-callable items.</span>
 <span class="sd">            AttributeError: If input devices don&#39;t have device_uuid attribute.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mqttconnector</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;mqttconnector is required&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">input_devices</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;input_devices cannot be empty&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">output_actions</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;output_actions cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">output_actions_on</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;output_actions_on cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">output_actions_off</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;output_actions_off cannot be empty&quot;</span><span class="p">)</span>
         
         <span class="c1"># Validate that all output actions are callable</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output_actions</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output_actions_on</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;output_actions[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] is not callable&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;output_actions_on[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] is not callable&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">action</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">output_actions_off</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">callable</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;output_actions_off[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] is not callable&quot;</span><span class="p">)</span>
         
         <span class="c1"># Validate that all input devices have device_uuid</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">device</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_devices</span><span class="p">):</span>
@@ -503,7 +517,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">input_devices</span> <span class="o">=</span> <span class="n">input_devices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_uuids</span> <span class="o">=</span> <span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">device_uuid</span> <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">input_devices</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seconds_window</span> <span class="o">=</span> <span class="n">seconds_window</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span> <span class="o">=</span> <span class="n">output_actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_actions_on</span> <span class="o">=</span> <span class="n">output_actions_on</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_actions_off</span> <span class="o">=</span> <span class="n">output_actions_off</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;off&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">received</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 
@@ -513,7 +529,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Process incoming MQTT message for automation logic.</span>
 <span class="sd">        </span>
 <span class="sd">        Checks if all input devices have sent messages within the time window.</span>
-<span class="sd">        If so, executes all configured output actions.</span>
+<span class="sd">        If so, toggles the state between &#39;on&#39; and &#39;off&#39; and executes the</span>
+<span class="sd">        corresponding set of output actions.</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
 <span class="sd">            message (dict): MQTT message dictionary containing:</span>
@@ -548,10 +565,11 @@
                 <span class="nb">abs</span><span class="p">(</span><span class="n">timestamps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">timestamps</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)])</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">))</span>
             <span class="p">]</span>
-            <span class="c1"># check if all entries are within window and publish</span>
+            <span class="c1"># check if all entries are within window and toggle state</span>
             <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">seconds_window</span> <span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="n">differences</span><span class="p">):</span>
-                <span class="c1"># Call output actions</span>
-                <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_actions</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;off&#39;</span> <span class="k">else</span> <span class="s1">&#39;off&#39;</span>
+                <span class="n">actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_actions_on</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;on&#39;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_actions_off</span>
+                <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
                     <span class="n">action</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">received</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">return</span></div>
