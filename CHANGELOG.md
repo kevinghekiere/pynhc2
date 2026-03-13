@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.3][0.1.3] - 2026-03-13
 
-### Changed
+### Fixed
 
 - Fixed feedback loop in MessageHandler and MultimessageHandler classes by adding cooldown period
 
