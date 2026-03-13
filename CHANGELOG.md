@@ -35,4 +35,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed feedback loop in MessageHandler and MultimessageHandler classes by adding cooldown period
 
-[0.1.3]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.2
+[0.1.3]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.3
