@@ -5,6 +5,7 @@ automation handlers based on device state changes.
 """
 
 from datetime import datetime as dt
+import time
 
 class Device:
     """Base class for Niko Home Control devices.
@@ -321,6 +322,8 @@ class MultiMessageHandler:
         self.output_actions_off = output_actions_off
         self.state = 'off'
         self.received = []
+        self.cooldown_seconds = 2.0
+        self._last_triggered = 0.0
 
     def handle_message(self, message):
         """Process incoming MQTT message for automation logic.
@@ -335,6 +338,10 @@ class MultiMessageHandler:
                 - timestamp (float): Message timestamp in seconds.
                 - Other message metadata.
         """
+
+        # ignore messages during cooldown to prevent feedback loops
+        if (time.time() - self._last_triggered) < self.cooldown_seconds:
+            return
 
         # remove old messages
         if self.received:
@@ -365,6 +372,7 @@ class MultiMessageHandler:
             # check if all entries are within window and toggle state
             if all(diff < self.seconds_window for diff in differences):
                 self.state = 'on' if self.state == 'off' else 'off'
+                self._last_triggered = time.time()
                 actions = self.output_actions_on if self.state == 'on' else self.output_actions_off
                 for action in actions:
                     action()

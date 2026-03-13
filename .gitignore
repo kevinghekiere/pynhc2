@@ -21,3 +21,4 @@ build/
 .*whl
 nhc_test.ipynb
 sync_repo.py
+publish_package.sh

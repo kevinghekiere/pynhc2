@@ -671,6 +671,8 @@ class TestMultiMessageHandler:
         assert handler.seconds_window == 0.5
         assert handler.received == []
         assert handler.state == 'off'
+        assert handler.cooldown_seconds == 2.0
+        assert handler._last_triggered == 0.0
 
     def test_init_missing_connector(self):
         """Test that ValueError is raised when mqttconnector is missing."""
@@ -795,6 +797,9 @@ class TestMultiMessageHandler:
         handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
         handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1000.1})
 
+        # Simulate cooldown expiry
+        handler._last_triggered = 0.0
+
         # Second trigger → OFF
         handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1002.0})
         handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1002.1})
@@ -832,6 +837,86 @@ class TestMultiMessageHandler:
         action_on.assert_not_called()
         action_off.assert_not_called()
         assert handler.state == 'off'
+
+    def test_cooldown_blocks_retriggering(self):
+        """Test that actions do not fire again during the cooldown period."""
+        conn = Mock()
+        device1 = Mock()
+        device1.device_uuid = "uuid-1"
+        device2 = Mock()
+        device2.device_uuid = "uuid-2"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device1, device2],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=1.0
+        )
+
+        # First trigger → ON
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1000.1})
+        assert handler.state == 'on'
+        assert action_on.call_count == 1
+
+        # Immediately retrigger within cooldown → should be blocked
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.5})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1000.6})
+        assert action_off.call_count == 0
+        assert handler.state == 'on'  # State should not have changed
+
+    def test_cooldown_expires_allows_retriggering(self):
+        """Test that actions fire again after the cooldown period expires."""
+        conn = Mock()
+        device1 = Mock()
+        device1.device_uuid = "uuid-1"
+        device2 = Mock()
+        device2.device_uuid = "uuid-2"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device1, device2],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=1.0
+        )
+
+        # First trigger → ON
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1000.1})
+        assert handler.state == 'on'
+
+        # Simulate cooldown expiry by setting _last_triggered far in the past
+        handler._last_triggered = 0.0
+
+        # Second trigger → OFF
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1005.0})
+        handler.handle_message({"device_uuid": "uuid-2", "timestamp": 1005.1})
+        assert handler.state == 'off'
+        assert action_off.call_count == 1
+
+    def test_cooldown_seconds_is_configurable(self):
+        """Test that cooldown_seconds can be overridden after initialisation."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-1"
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device],
+            output_actions_on=[lambda: None],
+            output_actions_off=[lambda: None]
+        )
+
+        handler.cooldown_seconds = 5.0
+        assert handler.cooldown_seconds == 5.0
 
 
 class TestNHC2FileReader:
