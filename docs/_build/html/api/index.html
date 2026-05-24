@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference &mdash; pynhc2 0.1.3 documentation</title>
+  <title>API Reference &mdash; pynhc2 0.1.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=360bc84d"></script>
+      <script src="../_static/documentation_options.js?v=fd825880"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
@@ -710,8 +710,11 @@ Execution of all configured output actions.</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Automation handler that triggers actions based on multiple device inputs.</p>
 <p>Monitors multiple input devices and triggers output actions when all input
-devices have sent messages within a specified time window. This enables
-complex automation scenarios like “turn on scene when two switches are pressed”.</p>
+devices have sent the required number of messages within a specified time window.
+Duplicate entries in input_devices are supported and require the same device to
+send that many messages within the window (e.g., listing a device twice requires
+two presses in rapid succession). This enables complex automation scenarios like
+“turn on scene when two switches are pressed” or “trigger on double-press”.</p>
 <p>The handler maintains a toggle state (‘off’ initially). Each time all input
 devices are triggered within the time window, the state toggles between ‘on’
 and ‘off’, executing the corresponding set of output actions.</p>
@@ -811,7 +814,9 @@ and ‘off’, executing the corresponding set of output actions.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mqttconnector</strong> (<a class="reference internal" href="#pynhc2.MQTTConnector" title="pynhc2.MQTTConnector"><em>MQTTConnector</em></a>) – MQTT connector instance.</p></li>
-<li><p><strong>input_devices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of device objects (e.g., Lamp instances) to monitor.</p></li>
+<li><p><strong>input_devices</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of device objects (e.g., Lamp instances) to monitor.
+Duplicates are allowed — listing the same device N times requires it to
+send N messages within the time window before the handler triggers.</p></li>
 <li><p><strong>output_actions_on</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions to execute when state becomes ‘on’.</p></li>
 <li><p><strong>output_actions_off</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – List of callable actions to execute when state becomes ‘off’.</p></li>
 <li><p><strong>seconds_window</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Time window in seconds for matching inputs.
@@ -832,9 +837,11 @@ Defaults to 0.5.</p></li>
 <dt class="sig sig-object py" id="pynhc2.MultiMessageHandler.handle_message">
 <span class="sig-name descname"><span class="pre">handle_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynhc2/devicecontrol.html#MultiMessageHandler.handle_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynhc2.MultiMessageHandler.handle_message" title="Link to this definition"></a></dt>
 <dd><p>Process incoming MQTT message for automation logic.</p>
-<p>Checks if all input devices have sent messages within the time window.
-If so, toggles the state between ‘on’ and ‘off’ and executes the
-corresponding set of output actions.</p>
+<p>Checks if all input devices have sent the required number of messages
+within the time window. Supports duplicate entries in input_devices,
+allowing the same device to be listed multiple times (e.g., to require
+two presses in rapid succession). If so, toggles the state between
+‘on’ and ‘off’ and executes the corresponding set of output actions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – MQTT message dictionary containing:

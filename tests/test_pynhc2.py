@@ -918,6 +918,93 @@ class TestMultiMessageHandler:
         handler.cooldown_seconds = 5.0
         assert handler.cooldown_seconds == 5.0
 
+    def test_init_duplicate_input_devices_accepted(self):
+        """Test that listing the same device twice is accepted by the constructor."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-1"
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device, device],
+            output_actions_on=[lambda: None],
+            output_actions_off=[lambda: None]
+        )
+
+        assert handler.input_uuids == ["uuid-1", "uuid-1"]
+
+    def test_handle_message_duplicate_device_double_press_triggers(self):
+        """Test that two messages from the same device within the window trigger when listed twice."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-1"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device, device],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=0.5
+        )
+
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.2})
+
+        action_on.assert_called_once()
+        action_off.assert_not_called()
+        assert handler.state == 'on'
+        assert handler.received == []
+
+    def test_handle_message_duplicate_device_single_press_does_not_trigger(self):
+        """Test that a single message from a device listed twice does not trigger."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-1"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device, device],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=0.5
+        )
+
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+
+        action_on.assert_not_called()
+        action_off.assert_not_called()
+        assert handler.state == 'off'
+
+    def test_handle_message_duplicate_device_presses_outside_window_do_not_trigger(self):
+        """Test that two presses of the same device outside the window do not trigger."""
+        conn = Mock()
+        device = Mock()
+        device.device_uuid = "uuid-1"
+
+        action_on = Mock()
+        action_off = Mock()
+
+        handler = MultiMessageHandler(
+            mqttconnector=conn,
+            input_devices=[device, device],
+            output_actions_on=[action_on],
+            output_actions_off=[action_off],
+            seconds_window=0.5
+        )
+
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1000.0})
+        handler.handle_message({"device_uuid": "uuid-1", "timestamp": 1001.0})  # > 0.5s apart
+
+        action_on.assert_not_called()
+        action_off.assert_not_called()
+        assert handler.state == 'off'
+
 
 class TestNHC2FileReader:
     """Tests for NHC2FileReader class."""

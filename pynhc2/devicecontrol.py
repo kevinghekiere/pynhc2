@@ -258,8 +258,11 @@ class MultiMessageHandler:
     """Automation handler that triggers actions based on multiple device inputs.
     
     Monitors multiple input devices and triggers output actions when all input
-    devices have sent messages within a specified time window. This enables
-    complex automation scenarios like "turn on scene when two switches are pressed".
+    devices have sent the required number of messages within a specified time window.
+    Duplicate entries in input_devices are supported and require the same device to
+    send that many messages within the window (e.g., listing a device twice requires
+    two presses in rapid succession). This enables complex automation scenarios like
+    "turn on scene when two switches are pressed" or "trigger on double-press".
 
     The handler maintains a toggle state ('off' initially). Each time all input
     devices are triggered within the time window, the state toggles between 'on'
@@ -282,6 +285,8 @@ class MultiMessageHandler:
         Args:
             mqttconnector (MQTTConnector): MQTT connector instance.
             input_devices (list): List of device objects (e.g., Lamp instances) to monitor.
+                Duplicates are allowed — listing the same device N times requires it to
+                send N messages within the time window before the handler triggers.
             output_actions_on (list): List of callable actions to execute when state becomes 'on'.
             output_actions_off (list): List of callable actions to execute when state becomes 'off'.
             seconds_window (float, optional): Time window in seconds for matching inputs.
@@ -328,10 +333,12 @@ class MultiMessageHandler:
     def handle_message(self, message):
         """Process incoming MQTT message for automation logic.
         
-        Checks if all input devices have sent messages within the time window.
-        If so, toggles the state between 'on' and 'off' and executes the
-        corresponding set of output actions.
-        
+        Checks if all input devices have sent the required number of messages
+        within the time window. Supports duplicate entries in input_devices,
+        allowing the same device to be listed multiple times (e.g., to require
+        two presses in rapid succession). If so, toggles the state between
+        'on' and 'off' and executes the corresponding set of output actions.
+
         Args:
             message (dict): MQTT message dictionary containing:
                 - device_uuid (str): UUID of the device that sent the message.
@@ -357,14 +364,25 @@ class MultiMessageHandler:
         # add new message
         self.received.append(message)
 
-        # collect timestamps for each input device uuid
-        device_timestamps = {}
+        # collect timestamps per uuid (list to support duplicate input devices)
+        device_message_lists = {}
         for msg in self.received:
-            device_timestamps[msg.get('device_uuid')] = msg.get('timestamp')
+            uid = msg.get('device_uuid')
+            if uid not in device_message_lists:
+                device_message_lists[uid] = []
+            device_message_lists[uid].append(msg.get('timestamp'))
 
-        # check if commands have been sent for all input_devices
-        if sorted(list(device_timestamps.keys())) == sorted(self.input_uuids):
-            timestamps = [device_timestamps[uuid] for uuid in self.input_uuids]
+        # count how many messages are required per uuid
+        required_counts = {}
+        for uuid in self.input_uuids:
+            required_counts[uuid] = required_counts.get(uuid, 0) + 1
+
+        # check if enough messages have been received for each required uuid
+        if all(len(device_message_lists.get(uuid, [])) >= count for uuid, count in required_counts.items()):
+            # take the most recent N timestamps per uuid as required
+            timestamps = []
+            for uuid, count in required_counts.items():
+                timestamps.extend(sorted(device_message_lists[uuid])[-count:])
             differences = [
                 abs(timestamps[i] - timestamps[(i + 1) % len(timestamps)])
                 for i in range(len(timestamps))

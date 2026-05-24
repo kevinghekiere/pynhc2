@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.1.4][0.1.4] - 2026-05-24
+
+### Changed
+
+- Updated the MultiMessageHandler to allow multiple inputs from same input device
+
+[0.1.4]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.4
+<br/><br/>
+
+
+## [0.1.3][0.1.3] - 2026-03-13
+
+### Fixed
+
+- Fixed feedback loop in MessageHandler and MultimessageHandler classes by adding cooldown period
+
+[0.1.3]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.3
+<br/><br/>
+
+
+## [0.1.2][0.1.2] - 2026-03-12
+
+### Changed
+
+- Made the MessageHandler and MultiMessageHandler classes stateful: added 'state' attribute that toggles between off/on
+
+[0.1.2]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.2
+<br/><br/>
+
+
 ## [0.1.1][0.1.1] - 2025-12-13
 
 ### Added
@@ -19,20 +50,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MultiMessageHandler class for multi-device automation
 
 [0.1.1]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.1
+<br/><br/>
 
-## [0.1.2][0.1.2] - 2026-03-12
-
-### Changed
-
-- Made the MessageHandler and MultiMessageHandler classes stateful: added 'state' attribute that toggles between off/on
-
-[0.1.2]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.2
-
-
-## [0.1.3][0.1.3] - 2026-03-13
-
-### Fixed
-
-- Fixed feedback loop in MessageHandler and MultimessageHandler classes by adding cooldown period
-
-[0.1.3]: https://github.com/kevinghekiere/pynhc2/releases/tag/v0.1.3
